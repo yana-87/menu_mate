@@ -1,0 +1,20 @@
+# .gitignore
+
+# 仮想環境のフォルダ
+.venv/
+venv/
+env/
+
+# Pythonのキャッシュやコンパイルファイル
+__pycache__/
+*.py[cod]
+
+# 環境変数（パスワードなど）
+.env
+
+# データベースファイル
+*.db
+*.sqlite3
+
+# OS固有の隠しファイル
+.DS_Store
