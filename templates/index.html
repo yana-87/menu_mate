@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Mate</title>
+</head>
+<body>
+    <h1>献立アプリ</h1>
+    <h3>メニューを追加</h3>
+    <form action="/add" method="POST">
+        <input type="text" name="name" placeholder="料理名" required>
+        <select name="category">
+            <option value="" selected disabled >-- ジャンルを選択 --</option>
+            <option value="肉">肉料理</option>
+            <option value="魚">魚料理</option>
+            <option value="野菜">野菜料理</option>
+            <option value="その他">その他</option>
+        </select>
+        <button type="submit">追加</button>
+    </form>
+
+        <hr>
+
+        <h2>メニュー表</h2>
+        <ul>
+        {% for menu in menus %}
+            <li>
+                {{ menu.category }}
+                {{ menu.name }}
+
+                <form action="/delete/{{ menu.id }}" method="POST">
+                    <button type="submit">削除</button>
+                </form>
+            </li>
+        {% else %}
+            <p>まだメニューがありません。登録してください！</p>
+        {% endfor %}
+        </ul>
+</body>
+</html>
