@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>random menu</title>
+</head>
+<body>
+    <h1>今日の夕食は...</h1>
+    <h2>{{ menu.name if menu else 'メニューがありません。登録してください！' }}</h2>
+    {% if menu %}
+    <p>ジャンル: {{ menu.category }}</p>
+    {% endif %}
+    <a href="/">戻る</a>
+</body>
+</html>
