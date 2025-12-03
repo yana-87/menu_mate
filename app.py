@@ -49,6 +49,17 @@ def delete_menu(id):
     return redirect(url_for("index"))
 
 
+# ランダムメニュー表示機能
+@app.route("/random")
+def random_menu():
+    menus = Menu.query.all()
+    if menus:
+        selected_menu = random.choice(menus)
+        return render_template("random.html", menu=selected_menu)
+    else:
+        return render_template("random.html", menu=None)
+
+
 # アプリの起動
 if __name__ == "__main__":
     with app.app_context():
