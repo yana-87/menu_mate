@@ -50,9 +50,15 @@ def delete_menu(id):
 
 
 # ランダムメニュー表示機能
-@app.route("/random")
+@app.route("/random", methods=["POST"])
 def random_menu():
-    menus = Menu.query.all()
+    category = request.form.get("category")
+
+    if category:
+        menus = Menu.query.filter_by(category=category).all()
+    else:
+        menus = Menu.query.all()
+
     if menus:
         selected_menu = random.choice(menus)
         return render_template("random.html", menu=selected_menu)
