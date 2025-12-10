@@ -1,0 +1,32 @@
+{% extends 'layout.html'%}
+
+{% block title %}メニュー編集{% endblock %}
+
+{% block content %}
+<h1>メニューの編集</h1>
+
+<form action="/edit/{{ menu.id }}" method="POST">
+
+    <label>料理名:</label><br>
+    <input type="text" name="name" value="{{ menu.name }}" required>
+    <br><br>
+
+    <label>ジャンル:</label><br>
+    <select name="category">
+        <option value="肉" {% if menu.category=='肉' %}selected{% endif %}>肉料理</option>
+        <option value="魚" {% if menu.category=='魚' %}selected{% endif %}>魚料理</option>
+        <option value="野菜" {% if menu.category=='野菜' %}selected{% endif %}>野菜料理</option>
+        <option value="麺類" {% if menu.category=='麺類' %}selected{% endif %}>麺類</option>
+        <option value="ご飯もの" {% if menu.category=='ご飯もの' %}selected{% endif %}>ご飯もの（丼など）</option>
+        <option value="揚げ物" {% if menu.category=='揚げ物' %}selected{% endif %}>揚げ物</option>
+        <option value="和食" {% if menu.category=='和食' %}selected{% endif %}>和食</option>
+        <option value="洋食" {% if menu.category=='洋食' %}selected{% endif %}>洋食</option>
+        <option value="中華" {% if menu.category=='中華' %}selected{% endif %}>中華</option>
+        <option value="その他" {% if menu.category=='その他' %}selected{% endif %}>その他</option>
+    </select>
+    <br><br>
+
+    <button type="submit">更新する</button>
+    <a href="/">キャンセル</a>
+</form>
+{% endblock %}

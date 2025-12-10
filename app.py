@@ -38,6 +38,23 @@ def add_menu():
     return redirect(url_for("index"))
 
 
+# メニュー編集機能
+@app.route("/edit/<int:id>", methods=["GET", "POST"])
+def edit_menu(id):
+    # 指定されたIDのメニューを取得
+    # 存在しない場合は404エラーを返す
+    menu = Menu.query.get_or_404(id)
+    # POSTの場合はデータを更新
+    if request.method == "POST":
+        menu.name = request.form.get("name")
+        menu.category = request.form.get("category")
+        # データベースに変更を保存
+        db.session.commit()
+        # 一覧画面にリダイレクト
+        return redirect(url_for("index"))
+    return render_template("edit.html", menu=menu)
+
+
 # メニュー削除機能
 @app.route("/delete/<int:id>", methods=["POST"])
 def delete_menu(id):
